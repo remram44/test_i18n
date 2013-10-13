@@ -1,13 +1,13 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# test_i18n: example of Python+gettext setup.
+# Copyright (C) 2013 Remi Rampin
+# This file is distributed under the same license as the test_i18n package.
+# Remi Rampin <remirampin@gmail.com>, 2013.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: remirampin@gmail.com\n"
 "POT-Creation-Date: 2013-10-13 11:49-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
