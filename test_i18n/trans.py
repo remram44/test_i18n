@@ -12,7 +12,10 @@ import sys
 d = pkg_resources.resource_filename('test_i18n', 'l10n')
 
 trans = gettext.translation('test_i18n', d)
-_ = trans.ugettext
+
+
+def _(*args):
+    return trans.ugettext(*args)
 
 
 if str == bytes:
