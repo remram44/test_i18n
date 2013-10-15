@@ -1,6 +1,21 @@
 from __future__ import unicode_literals
 
+import os
 from setuptools import setup
+
+
+translation_files = []
+def add_translations(realpath, path):
+    for f in os.listdir(realpath):
+        rf = os.path.join(realpath, f)
+        pf = os.path.join(path, f)
+        if os.path.isdir(rf):
+            add_translations(rf, pf)
+        elif os.path.isfile(rf):
+            translation_files.append(pf)
+add_translations(
+        os.path.join(os.path.dirname(__file__), 'test_i18n', 'l10n'),
+        'l10n')
 
 
 setup(name='test_i18n',
@@ -10,8 +25,8 @@ setup(name='test_i18n',
       author="Remi Rampin",
       author_email='remirampin@gmail.com',
       license='Public Domain',
-      package_data = {
-        'test_i18n': ['l10n/*.mo'],
+      package_data={
+        'test_i18n': translation_files,
       },
       keywords=['python', 'i18n', 'gettext'],
       classifiers=[

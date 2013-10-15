@@ -10,7 +10,7 @@ import pkg_resources
 d = pkg_resources.resource_filename('test_i18n', 'l10n')
 
 languages = [locale.getlocale()[0]]
-trans = gettext.translation('test_i18n', d, languages)
+trans = gettext.translation('test_i18n', d, languages, fallback=True)
 
 
 def _(*args):
