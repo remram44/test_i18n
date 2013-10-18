@@ -2,7 +2,7 @@ from .trans import _, _n
 
 
 def say_hello(name):
-    print _(u"Hello {name}!").format(name=name)
+    print(_(u"Hello {name}!").format(name=name))
 
     for i in (2, 1):
         print(_n(u"{i} bottle of beer on the wall, {i} bottle of beer.",
