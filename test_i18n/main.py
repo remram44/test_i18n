@@ -11,17 +11,19 @@ def setup():
 
     locale.setlocale(locale.LC_ALL, '')
 
-    # Python tends to f*ck up, make sure it doesn't decide to use 'ascii'
-    sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout)
-    sys.stderr = codecs.getwriter(locale.getpreferredencoding())(sys.stderr)
+    # Python 2 tends to f*ck up, make sure it doesn't decide to use 'ascii'
+    if str == bytes:
+        writer = codecs.getwriter(locale.getpreferredencoding())
+        sys.stdout = writer(sys.stdout)
+        sys.stderr = writer(sys.stderr)
 
     # Setup the Python path
     try:
-        import test_i18n.main
+        import test_i18n
     except ImportError:
         sys.path.insert(0, os.path.abspath(os.path.join(app_dir, '..')))
         try:
-            import test_i18n.main
+            import test_i18n
         except ImportError:
             sys.stderr.write(_(u"Couldn't setup the Python path\n"))
             sys.exit(2)
