@@ -13,5 +13,7 @@ languages = [locale.getlocale()[0]]
 trans = gettext.translation('test_i18n', d, languages, fallback=True)
 
 
-def _(*args):
-    return trans.ugettext(*args)
+def _(msg):
+    return trans.ugettext(msg)
+def _n(singular, plural, n):
+    return trans.ungettext(singular, plural, n)
