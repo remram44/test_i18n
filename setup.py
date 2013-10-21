@@ -1,5 +1,4 @@
 import os
-
 from setuptools import setup
 from setuptools.command.install_lib import install_lib as _install_lib
 from distutils.cmd import Command
@@ -69,11 +68,13 @@ class install_data(_install_data):
 setup(name=NAME,
       version='0.1',
       packages=['test_i18n'],
+      entry_points={
+          'console_scripts': ['say_hello = test_i18n.main:main']},
       description="This is a test package for gettext",
       author="Remi Rampin",
       author_email='remirampin@gmail.com',
       license='Public Domain',
-      package_data = {
+      package_data={
         'test_i18n': ['l10n/*.mo'],
       },
       cmdclass={
