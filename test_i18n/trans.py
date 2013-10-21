@@ -17,13 +17,25 @@ trans = gettext.translation('test_i18n', d, languages, fallback=True)
 
 
 if hasattr(trans, 'ugettext'):
-    def _(msg):
-        return trans.ugettext(msg)
-    def _n(singular, plural, n):
-        return trans.ungettext(singular, plural, n)
+    def _(*args, **kwargs):
+        tr = trans.ugettext(*args)
+        if kwargs:
+            tr = tr.format(**kwargs)
+        return tr
+    def _n(singular, plural, n, **kwargs):
+        tr = trans.ungettext(singular, plural, n)
+        if kwargs:
+            tr = tr.format(**kwargs)
+        return tr
 else:
     # Yes, ugettext was removed from Python 3. Yes, this is pathetic.
-    def _(msg):
-        return trans.gettext(msg)
-    def _n(singular, plural, n):
-        return trans.ngettext(singular, plural, n)
+    def _(*args, **kwargs):
+        tr = trans.gettext(*args)
+        if kwargs:
+            tr = tr.format(**kwargs)
+        return tr
+    def _n(singular, plural, n, **kwargs):
+        tr = trans.ngettext(singular, plural, n)
+        if kwargs:
+            tr = tr.format(**kwargs)
+        return tr
