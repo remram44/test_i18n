@@ -5,15 +5,30 @@ import pkg_resources
 
 # Entry points should be using:
 #locale.setlocale(locale.LC_ALL, '')
+#test_i18n.trans.setup_translation()
 
 
-d = pkg_resources.resource_filename('test_i18n', 'l10n')
+if str == bytes:
+    string_types = basestring
+else:
+    string_types = str
 
-languages = []
-lang = locale.getlocale()[0]
-if lang is not None:
-    languages.append(lang)
-trans = gettext.translation('test_i18n', d, languages, fallback=True)
+
+trans = gettext.NullTranslations()
+
+
+def setup_translation(languages=[]):
+    global trans
+
+    if isinstance(languages, string_types):
+        languages = [languages]
+
+    d = pkg_resources.resource_filename('test_i18n', 'l10n')
+    
+    lang = locale.getlocale()[0]
+    if lang is not None:
+        languages.insert(0, lang)
+    trans = gettext.translation('test_i18n', d, languages, fallback=True)
 
 
 if hasattr(trans, 'ugettext'):

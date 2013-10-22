@@ -28,6 +28,9 @@ def setup():
             sys.stderr.write(_(u"Couldn't setup the Python path\n"))
             sys.exit(2)
 
+    from test_i18n.trans import setup_translation
+    setup_translation()
+
 
 def main():
     setup()
