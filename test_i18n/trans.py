@@ -27,7 +27,7 @@ def setup_translation(languages=[]):
     
     lang = locale.getlocale()[0]
     if lang is not None:
-        languages.insert(0, lang)
+        languages.append(lang)
     trans = gettext.translation('test_i18n', d, languages, fallback=True)
 
 

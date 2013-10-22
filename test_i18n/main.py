@@ -37,6 +37,9 @@ def main():
 
     from test_i18n.hello import say_hello
     if len(sys.argv) >= 2:
-        say_hello(sys.argv[1])
+        arg = sys.argv[1]
+        if isinstance(arg, bytes):
+            arg = arg.decode(locale.getpreferredencoding())
+        say_hello(arg)
     else:
         say_hello(u'rémi')
