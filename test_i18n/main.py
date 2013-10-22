@@ -28,12 +28,18 @@ def setup():
             sys.stderr.write(_(u"Couldn't setup the Python path\n"))
             sys.exit(2)
 
+    from test_i18n.trans import setup_translation
+    setup_translation()
+
 
 def main():
     setup()
 
     from test_i18n.hello import say_hello
     if len(sys.argv) >= 2:
-        say_hello(sys.argv[1])
+        arg = sys.argv[1]
+        if isinstance(arg, bytes):
+            arg = arg.decode(locale.getpreferredencoding())
+        say_hello(arg)
     else:
         say_hello(u'rémi')
